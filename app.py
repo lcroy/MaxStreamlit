@@ -16,6 +16,7 @@ from main.TG.text_generation import TextGeneration
 from main.SA.sen_twitter import TwitterClient
 from main.QA.bert import QA
 from transformers import pipeline
+from main.SU.summarization import *
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
 
 # config file defines the necessary parameters
@@ -68,7 +69,6 @@ def dis_TG_page():
     if click:
         with st.spinner("Wait..."):
             sentence = generator(str(message.title()), max_length=100, num_return_sequences=1)
-            #sentence = tg.text_gen(text=str(message.title()))
         st.success(sentence[0]['generated_text'])
     # model details
     st.write('---')
@@ -204,37 +204,6 @@ def set_sidebar():
     st.sidebar.info(cfg.contr_info)
     st.sidebar.header('About')
     st.sidebar.info(cfg.abt_info)
-
-
-@st.cache(allow_output_mutation=True)
-def load_summarizer():
-    model = pipeline("summarization", device=0)
-    # model = pipeline("summarization", device="cpu")
-    return model
-
-
-def generate_chunks(inp_str):
-    max_chunk = 500
-    inp_str = inp_str.replace('.', '.<eos>')
-    inp_str = inp_str.replace('?', '?<eos>')
-    inp_str = inp_str.replace('!', '!<eos>')
-
-    sentences = inp_str.split('<eos>')
-    current_chunk = 0
-    chunks = []
-    for sentence in sentences:
-        if len(chunks) == current_chunk + 1:
-            if len(chunks[current_chunk]) + len(sentence.split(' ')) <= max_chunk:
-                chunks[current_chunk].extend(sentence.split(' '))
-            else:
-                current_chunk += 1
-                chunks.append(sentence.split(' '))
-        else:
-            chunks.append(sentence.split(' '))
-
-    for chunk_id in range(len(chunks)):
-        chunks[chunk_id] = ' '.join(chunks[chunk_id])
-    return chunks
 
 
 def main():

@@ -35,11 +35,11 @@ class Config:
         self.docs_path = os.path.join(self.project_path, 'docs')
 
         # home page
-        self.home_title = 'Applied NLP to Robotics'
+        self.home_title = 'Applied NLP to Industrial Cases'
         self.home_des = "This is a demonstration platform for research work of " \
                         "**Natural Language Processing** of Robotics and Automation group in Aalborg University. " \
                         "The purpose of the platform is to share knowledge on how to apply Natural Language Processing to " \
-                        "**manufacturing** domain. The platform shares the same backend of a Virtual Assistant, BotX.  \n\r" \
+                        "**manufacturing** domain.  \n\r" \
                         "This platform provides \n\r" \
                         "* **Task-oriented dialogue system** for industrial robots manipulation. \n\r" \
                         "* **Question and Answering** for answering the question based on the user provided info.\n\r" \
