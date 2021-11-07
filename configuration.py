@@ -18,7 +18,7 @@ class Config:
         ## Summarization_image path
         self.SU_image_path = os.path.join(self.image_path, 'su.jpg')
         ## Summarization_image_architecture_image path
-        self.SU_architecture_image_path = os.path.join(self.image_path, 't5.png')
+        self.SU_architecture_image_path = os.path.join(self.image_path, 'bart.png')
 
         ## Question Answering image path
         self.QA_image_path = os.path.join(self.image_path, 'qa_process.jpg')
@@ -68,19 +68,22 @@ class Config:
         # Summarization page
         self.SU_title = "Text Summarization - Extract key information from the given text"
         self.SU_des = "Text summarization in NLP is the process of summarizing the information in large texts for quicker consumption." \
-                      "In our work, we leverage the **Google T5** model. It is an encoder-decoder model. It converts all language problems " \
+                      "In our work, we leverage the **BART** model. It is an encoder-decoder model. It converts all language problems " \
                       "into a text-to-text format. You can type a snippet in the following " \
                       "box and see how Botx helps to generate summarization."
-        self.SU_model_overview = "With T5, all NLP tasks into a unified text-to-text-format where the input and output " \
-                                 "are always text strings, in contrast to BERT-style models that can only output either " \
-                                 "a class label or a span of the input. Our text-to-text framework allows us to use the " \
-                                 "same model, loss function, and hyperparameters on any NLP task, including machine translation, " \
-                                 "document summarization, question answering, and classification tasks (e.g., sentiment analysis). " \
-                                 "We can even apply T5 to regression tasks by training it to predict the string representation of a " \
-                                 "number instead of the number itself."
-        self.SU_about = "T5 model was proposed in [Exploring Transfer Learning with T5: the Text-To-Text Transfer Transformer]" \
-                        "(https://ai.googleblog.com/2020/02/exploring-transfer-learning-with-t5.html) by " \
-                        "Colin Raffel, Noam Shazeer, Adam Roberts, Katherine Lee, Sharan Narang, Michael Matena, Yanqi Zhou, Wei Li, Peter J. Liu"
+        self.SU_model_overview = "According to the [paper](https://arxiv.org/abs/1910.13461), BART, a denoising autoencoder for pretraining sequence-to-sequence models. BART is trained by (1) " \
+                                 "corrupting text with an arbitrary noising function, and (2) learning a model to reconstruct the original " \
+                                 "text. It uses a standard Tranformer-based neural machine translation architecture which, despite its simplicity, " \
+                                 "can be seen as generalizing BERT (due to the bidirectional encoder), GPT (with the left-to-right decoder), " \
+                                 "and many other more recent pretraining schemes. We evaluate a number of noising approaches, finding the best " \
+                                 "performance by both randomly shuffling the order of the original sentences and using a novel in-filling scheme, " \
+                                 "where spans of text are replaced with a single mask token. BART is particularly effective when fine tuned for " \
+                                 "text generation but also works well for comprehension tasks. It matches the performance of RoBERTa with comparable " \
+                                 "training resources on GLUE and SQuAD, achieves new state-of-the-art results on a range of abstractive dialogue, question " \
+                                 "answering, and summarization tasks, with gains of up to 6 ROUGE."
+        self.SU_about = "BART model was proposed in [BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, " \
+                        "Translation, and Comprehension](https://arxiv.org/abs/1910.13461) by Mike Lewis, Yinhan Liu, Naman Goyal, " \
+                        "Marjan Ghazvininejad, Abdelrahman Mohamed, Omer Levy, Ves Stoyanov and Luke Zettlemoyer on 29 Oct, 2019."
 
 
         # Question Answering page
