@@ -1,0 +1,2 @@
+conda install -c conda-forge tweepy=3.10.0
+pytorch-transformers

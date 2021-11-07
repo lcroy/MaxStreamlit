@@ -13,8 +13,8 @@ from PIL import Image
 from configuration import Config
 from main.TG.text_generation import TextGeneration
 from main.SA.sen_twitter import TwitterClient
-# from main.QA.bert import QA
-from transformers import pipeline, T5Tokenizer, T5Config, T5ForConditionalGeneration
+from main.QA.bert import QA
+from transformers import pipeline
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
 
 # config file defines the necessary parameters
@@ -27,32 +27,32 @@ def dis_home_page():
     # st.image(img, width=250)
 
 
-# def dis_QA_page():
-#     st.title(cfg.QA_title)
-#     st.markdown(cfg.QA_des)
-#     img = Image.open(cfg.QA_image_path)
-#     st.image(img, width=700)
-#     st.write('---')
-#     message_context = st.text_area("Give some context first", "Type Here")
-#     message_question = st.text_area("You may ask me a question now", "Type Here")
-#     click = st.button("Show me answer")
-#     if click:
-#         with st.spinner("Wait..."):
-#             qa = QA(cfg.QA_model_path)
-#             answer = qa.predict(message_context.title(), message_question.title())
-#         st.success(answer['answer'])
-#     # model details
-#     st.write('---')
-#     st.header("Model Details")
-#     st.subheader("Information-retrieval based Qeustion Answer")
-#     st.markdown(cfg.QA_process)
-#     st.subheader("Model Architecture")
-#     st.markdown(cfg.QA_model_overview)
-#     img = Image.open(cfg.QA_bert_model_image_path)
-#     st.image(img, width=550)
-#     st.write('---')
-#     st.header("Reference")
-#     st.info(cfg.QA_about)
+def dis_QA_page():
+    st.title(cfg.QA_title)
+    st.markdown(cfg.QA_des)
+    img = Image.open(cfg.QA_image_path)
+    st.image(img, width=700)
+    st.write('---')
+    message_context = st.text_area("Give some context first", "Type Here")
+    message_question = st.text_area("You may ask me a question now", "Type Here")
+    click = st.button("Show me answer")
+    if click:
+        with st.spinner("Wait..."):
+            qa = QA(cfg.QA_model_path)
+            answer = qa.predict(message_context.title(), message_question.title())
+        st.success(answer['answer'])
+    # model details
+    st.write('---')
+    st.header("Model Details")
+    st.subheader("Information-retrieval based Qeustion Answer")
+    st.markdown(cfg.QA_process)
+    st.subheader("Model Architecture")
+    st.markdown(cfg.QA_model_overview)
+    img = Image.open(cfg.QA_bert_model_image_path)
+    st.image(img, width=550)
+    st.write('---')
+    st.header("Reference")
+    st.info(cfg.QA_about)
 
 
 def dis_TG_page():
