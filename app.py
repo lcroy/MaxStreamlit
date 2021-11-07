@@ -10,6 +10,7 @@ import streamlit as st
 import time
 
 from PIL import Image
+from transformers import pipeline, set_seed
 from configuration import Config
 from main.TG.text_generation import TextGeneration
 from main.SA.sen_twitter import TwitterClient
@@ -62,11 +63,13 @@ def dis_TG_page():
     st.image(img, width=200)
     message = st.text_area("Enter your snippet", "Type Here")
     click = st.button("Generate Response")
+    generator = pipeline('text-generation', model='gpt2')
+    set_seed(42)
     if click:
         with st.spinner("Wait..."):
-            tg = TextGeneration()
-            sentence = tg.text_gen(text=str(message.title()))
-        st.success(sentence)
+            sentence = generator(str(message.title()), max_length=100, num_return_sequences=1)
+            #sentence = tg.text_gen(text=str(message.title()))
+        st.success(sentence[0]['generated_text'])
     # model details
     st.write('---')
     st.header("Model Details")
@@ -116,8 +119,6 @@ def dis_SU_page():
     st.image(img, width=500)
 
     summarizer = load_summarizer()
-    # sentence = st.text_area('Please paste your article :', height=30)
-    # button = st.button("Summarize")
 
     message = st.text_area("Please enter your text here", "Type Here")
     click = st.button("Generate Summarization")
@@ -135,13 +136,6 @@ def dis_SU_page():
             sentence = ' '.join([summ['summary_text'] for summ in res])
         # st.write(text)
         st.success(sentence)
-    #
-    # if click:
-    #     with st.spinner("Wait..."):
-    #         tg = TextGeneration()
-    #         sentence = tg.text_gen(text=str(message.title()))
-    #     st.success(sentence)
-    # model details
     st.write('---')
     st.header("Model Details")
     st.subheader("What is BART")
@@ -174,8 +168,7 @@ def set_sidebar():
             dis_SA_page()
 
         elif NLP_choice == 'Question & Answering':
-            # dis_QA_page()
-            pass
+            dis_QA_page()
 
         elif NLP_choice == 'Summarization':
             dis_SU_page()
