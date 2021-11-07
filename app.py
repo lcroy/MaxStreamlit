@@ -23,8 +23,8 @@ cfg = Config()
 def dis_home_page():
     st.title(cfg.home_title)
     st.markdown(cfg.home_des)
-    img = Image.open(cfg.botx_face_path)
-    st.image(img, width=250)
+    # img = Image.open(cfg.botx_face_path)
+    # st.image(img, width=250)
 
 
 # def dis_QA_page():
@@ -144,7 +144,7 @@ def dis_SU_page():
     # model details
     st.write('---')
     st.header("Model Details")
-    st.subheader("What is T5")
+    st.subheader("What is BART")
     st.markdown(cfg.SU_model_overview)
     st.subheader("Model Architecture")
     img = Image.open(cfg.SU_architecture_image_path)
