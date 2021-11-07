@@ -88,10 +88,10 @@ def dis_SA_page():
     st.title(cfg.SA_title)
     st.markdown(cfg.SA_des)
     img = Image.open(cfg.SA_image_path)
-    st.image(img, width=500)
+    st.image(img, width=700)
     st.header("Analysis Twitter Topic.")
     message = st.text_area("Let's play with tweet first","Type Here")
-    click = st.button("Sentiment Detection")
+    click = st.button("Sentiment Detection for tweet")
     if click:
         with st.spinner("Wait..."):
             sa = TwitterClient()
@@ -110,6 +110,16 @@ def dis_SA_page():
         st.info(nt)
         st.text("Neutral Tweets:")
         st.info(net)
+    st.write('---')
+    st.header("Analysis sentences.")
+    sentence = st.text_area("Let's give a sentence", "Type Here")
+    click_sen = st.button("Sentiment Detection for sentence")
+    if click_sen:
+        with st.spinner("Wait..."):
+            classifier = pipeline("sentiment-analysis")
+            results = classifier([sentence.title()])
+
+        st.success("The sentence is predicted as a " + str(results[0]['label']) + " and the score is " + str(results[0]['score']))
 
 
 def dis_SU_page():

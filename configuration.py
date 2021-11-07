@@ -26,7 +26,7 @@ class Config:
         self.QA_bert_model_image_path = os.path.join(self.image_path, 'bert_model.jpg')
 
         ## Sentiment_Analysis_image path
-        self.SA_image_path = os.path.join(self.image_path, 'SA.png')
+        self.SA_image_path = os.path.join(self.image_path, 'Sentiment-Analysis.jpg')
 
         # models path
         self.model_path = os.path.join(self.project_path, 'models')
@@ -45,7 +45,8 @@ class Config:
                         "* **Question and Answering** for answering the question based on the user provided info.\n\r" \
                         "* **Speech Recognition** for audio processing. \n\r" \
                         "* **Sentiment Analysis** for understanding customer/employee's feeling.\n\r" \
-                        "* **Text Generation** for response auto-generation."
+                        "* **Text Generation** for response auto-generation.\n\r" \
+                        "* **Summarization** for extracting the core information from a document."
 
         # Text Generation page
         self.TG_title = "Text Generation - Play with Transformer"
